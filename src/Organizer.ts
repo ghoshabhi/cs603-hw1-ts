@@ -26,7 +26,7 @@ export default class Organizer {
   }
 
   public mySortTasks(comparator: Comparator): TaskList {
-    // call custom comparator
+    // call custom algorithm
     return this._taskList;
   }
 }
