@@ -1,13 +1,16 @@
 import Task from "./Task";
-
-export interface Comparator {
-  (a: Task, b: Task): number;
-}
+import Comparator from "./Comparator";
+import { Utils } from "./utils/utils";
 
 type TaskList = Array<Task>;
 
 export default class Organizer {
   private _taskList: TaskList = new Array<Task>();
+  private _utils: Utils<Task>;
+
+  constructor() {
+    this._utils = new Utils();
+  }
 
   get taskList(): TaskList {
     return this._taskList;
@@ -21,12 +24,12 @@ export default class Organizer {
     this._taskList.push(newTask);
   }
 
-  public sortTasks(comparator: Comparator): void {
+  public sortTasks(comparator: Comparator<Task>): void {
     this._taskList.sort(comparator);
   }
 
-  public mySortTasks(comparator: Comparator): TaskList {
-    // call custom algorithm
-    return this._taskList;
+  public mySortTasks(comparator: Comparator<Task>): TaskList {
+    this._taskList = this._utils.sort(this._taskList, comparator);
+    return (this.taskList = this._taskList);
   }
 }
