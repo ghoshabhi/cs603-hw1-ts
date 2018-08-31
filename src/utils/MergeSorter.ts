@@ -1,12 +1,12 @@
 import Comparator from "../Comparator";
 
-abstract class Sorter<T> {
-  abstract sort(list: Array<T>, comparisonFn: Comparator<T>): void;
+interface Sorter<T> {
+  sort(list: Array<T>, comparisonFn: Comparator<T>): void;
 }
 
 // Source: https://stackoverflow.com/a/7730507/4379903
 
-export class MergeSorter<T> extends Sorter<T> {
+export class MergeSorter<T> implements Sorter<T> {
   sort(list: Array<T>, comparisonFn: Comparator<T>): Array<T> {
     return this.mergeSort(list, comparisonFn);
   }
